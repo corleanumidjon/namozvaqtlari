@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+
+body{
+  font-family: 'Nunito', sans-serif;
+  background: #212534;
+}
+
+:root {
+  --card-height: 75vh;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.choose {
+  font-family: 'Nunito', sans-serif;
+  width: 250px;
+  height: 50px;
+  display: block;
+  font-size: 25px;
+  color: rgb(88 199 250 / 100%);
+  background: #191c29;
+  border: 2px solid;
+  border-radius: 5px;
+  padding-left: 15px;
+  margin: 30px auto;
+}
+
+.card {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  text-align: center;
+  color: rgb(88 199 250 / 0%);
+  background: #191c29;
+  border: 3px solid;
+  border-radius: 10px;
+  padding: 10px 20px 0;
+}
+
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+.card:hover {
+  color: rgb(88 199 250 / 100%);
+  transition: color 1s;
+}
+
+.card:hover:before, .card:hover:after {
+  animation: none;
+  opacity: 0;
+}
+
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+  var(--rotate),
+  #5ddcff, #3c67e3 43%, #4e00c2);
+  position: absolute;
+  z-index: -1;
+  top: -1%;
+  left: -2%;
+  animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+  var(--rotate),
+  #5ddcff, #3c67e3 43%, #4e00c2);
+  opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+.text{
+  font-size: 25px;
+  letter-spacing: 1px;
+  margin: 25px 0;
+}
+
+.text:nth-child(1){
+  font-size: 35px;
+  border-bottom: 3px solid rgb(88 199 250 / 100%);
+  padding-bottom: 5px;
+}
